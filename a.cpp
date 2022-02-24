@@ -83,7 +83,7 @@ struct con {
 };
 struct proj {
   string name;
-  int di, si, ri, bi;
+  ll di, si, ri, bi;
   vector<pair<string, int>> lev;
 };
 struct executed {
@@ -94,9 +94,8 @@ struct con cons[N];
 struct proj projs[N];
 vector<executed> done;
 
-
 bool compproj(struct proj &p1, struct proj &p2) {
-    return p1.bi < p2.bi;
+  return p1.si * p2.di * p2.bi > p2.si * p1.di * p1.bi;
 }
 
 void go1() {
@@ -116,7 +115,7 @@ void go1() {
       cin >> skill >> skilllevel;
       co.lev[skill] = skilllevel;
     }
-    co.free=0;
+    co.free = 0;
     cons[i] = co;
   }
   fo(i, p) {
@@ -140,10 +139,10 @@ void go1() {
     projs[i] = po;
   }
 
-  sort(projs,projs+p,compproj);
-  fo(i,p) {
+  sort(projs, projs + p, compproj);
+  fo(i, p) {
     struct proj &pr = projs[i];
-    int maxday = 0;
+    ll maxday = 0;
     set<int> v;
     map<int, pair<string, int> > m;
     struct executed ex;
@@ -208,8 +207,7 @@ void go1() {
 int main() {
 
   Nos;
-  freopen("a_an_example.in.txt", "r", stdin);
-  // freopen("a.txt", "w", stdout);
+  // freopen("a_an_example.in.txt", "r", stdin);
   // freopen("b_better_start_small.in.txt", "r", stdin);
   // freopen("c_collaboration.in.txt", "r", stdin);
   // freopen("d_dense_schedule.in.txt", "r", stdin);
