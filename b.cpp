@@ -222,8 +222,8 @@ int main() {
 
   Nos;
   // freopen("a_an_example.in.txt", "r", stdin);
-  // freopen("b_better_start_small.in.txt", "r", stdin);
-  freopen("c_collaboration.in.txt", "r", stdin);
+  freopen("b_better_start_small.in.txt", "r", stdin);
+  // freopen("c_collaboration.in.txt", "r", stdin);
   freopen("hell.txt", "w", stdout);
   // freopen("d_dense_schedule.in.txt", "r", stdin);
   // freopen("e_exceptional_skills.in.txt", "r", stdin);

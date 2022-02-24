@@ -99,6 +99,7 @@ vector<executed> done;
 
 bool compproj(struct proj &p1, struct proj &p2) {
   return p1.si > p2.si;
+	// return p1.si * p2.di * p2.bi > p2.si * p1.di * p1.bi;
   // return p2.di > p1.di;
 }
 
@@ -144,10 +145,10 @@ void go1() {
   }
 
   sort(projs, projs + p, compproj);
-	vector<int> choos(p, 0);
-	fo(level, 10) {
+	vector<bool> vis(p, 0);
+	fo(its,50) {
 		fo(i, p) {
-			if(!choos[i]) {
+			if(!vis[i]) {
 				struct proj &pr = projs[i];
 				ll maxday = 0;
 				set<int> v;
@@ -210,75 +211,10 @@ void go1() {
 					cons[u].free = maxday;
 				}
 				done.pb(ex);
-				choos[i] = 1;
+				vis[i] = 1;
 			}
 		}
-		// if(choos[])
 	}
-  fo(i, p) {
-    struct proj &pr = projs[i];
-    ll maxday = 0;
-    set<int> v;
-    map<int, pair<string, int> > m;
-    struct executed ex;
-    ex.name = pr.name;
-    ex.contrs.assign(pr.ri, "");
-    vector<int> okrole(pr.ri, 0);
-
-    for(int j = 0; j < pr.ri;j++) {
-			int minskill = 1e9;
-			int minskillind = -1;
-      fo(k,c){
-        if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0 and cons[k].free + floor(((ld)pr.di)*1.5) < pr.bi + pr.si)  {
-					if(minskill > cons[k].lev[pr.lev[j].first]) {
-						minskill = cons[k].lev[pr.lev[j].first];
-						minskillind = k;
-					}
-        }
-      }
-			if(minskillind >= 0) {
-				int k = minskillind;
-				maxday = max(maxday, cons[k].free + pr.di);
-				ex.contrs[j] = (cons[k].name);
-				m[k] = {pr.lev[j].first, pr.lev[j].second};
-				v.insert(k);
-				okrole[j] = 1;
-			}
-    }
-    // cout << pr.name<<ln;
-    // for(auto &u:v) {
-    //   cout << cons[u].name << " ";
-    // }
-    // cout << ln;
-    if(v.size() < pr.ri) {
-      for(int j = 0; j < pr.ri;j++) {
-        if(okrole[j]) continue;
-        fo(k,c){
-          if(v.count(k) == 0 and cons[k].lev[pr.lev[j].first] == pr.lev[j].second - 1) {
-            bool isb = 0;
-            for(auto &u: v) {
-              if(cons[u].lev[pr.lev[j].first] >= pr.lev[j].second) {
-                maxday = max(maxday, cons[k].free + pr.di);
-                ex.contrs[j] = (cons[k].name);
-                m[k] = {pr.lev[j].first, pr.lev[j].second};
-                v.insert(k);
-                okrole[j] = 1;
-                isb = 1;
-                break;
-              }
-            }
-            if(isb) break;
-          }
-        }
-      }
-      if(v.size() < pr.ri) continue;
-    }
-    for(auto &u: v) {
-      if(cons[u].lev[m[u].first] <= m[u].second) cons[u].lev[m[u].first]++;
-      cons[u].free = maxday;
-    }
-    done.pb(ex);
-  }
 
   cout << done.size() << ln;
   fo(i, done.size()) {
@@ -292,9 +228,9 @@ int main() {
 
   Nos;
   // freopen("a_an_example.in.txt", "r", stdin);
-  // freopen("b_better_start_small.in.txt", "r", stdin);
-  freopen("c_collaboration.in.txt", "r", stdin);
-  freopen("hell.txt", "w", stdout);
+  freopen("b_better_start_small.in.txt", "r", stdin);
+  // freopen("c_collaboration.in.txt", "r", stdin);
+  freopen("hellb.txt", "w", stdout);
   // freopen("d_dense_schedule.in.txt", "r", stdin);
   // freopen("e_exceptional_skills.in.txt", "r", stdin);
   // freopen("e_exceptional_skills.in.txt", "r", stdin);
