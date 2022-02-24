@@ -79,6 +79,7 @@ struct con {
   string name;
   int skl;
   map<string, int> lev;
+  int free = 0;
 };
 struct proj {
   string name;
@@ -92,6 +93,11 @@ struct executed {
 struct con cons[N];
 struct proj projs[N];
 vector<executed> done;
+
+
+bool compproj(struct proj &p1, struct proj &p2) {
+    return p1.bi < p2.bi;
+}
 
 void go1() {
   cin >> c >> p;
@@ -110,6 +116,7 @@ void go1() {
       cin >> skill >> skilllevel;
       co.lev[skill] = skilllevel;
     }
+    co.free=0;
     cons[i] = co;
   }
   fo(i, p) {
@@ -131,6 +138,31 @@ void go1() {
       po.lev.push_back({skill, skillreq});
     }
     projs[i] = po;
+  }
+
+  sort(projs,projs+p,compproj);
+  fo(i,p) {
+    struct proj &pr = projs[i];
+    int maxday = 0;
+    set<int> v;
+    struct executed ex;
+    ex.name = pr.name;
+    for(int j = 0; j < pr.ri;j++) {
+      fo(k,c){
+        if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0)  {
+          maxday = max(maxday, cons[k].free + pr.di);
+          // cons[k].free 
+          ex.contrs.pb(cons[k].name);
+          v.insert(k);
+          break;
+        }
+      }
+    }
+    if(v.size() < pr.ri) continue;
+    for(auto &u: v) {
+      cons[u].free = maxday;
+    }
+    done.pb(ex);
   }
 
   cout << done.size();
