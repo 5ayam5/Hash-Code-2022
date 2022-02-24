@@ -167,13 +167,13 @@ void go1() {
 							for(auto &u: v) {
 								if(cons[u].lev[pr.lev[j].first] >= pr.lev[j].second) {
 									// mentor for k
-										maxday = max(maxday, cons[k].free + pr.di);
-										ex.contrs[j] = (cons[k].name);
-										m[k] = {pr.lev[j].first, pr.lev[j].second};
-										v.insert(k);
-										okrole[j] = 1;
-										isb = 1;
-										break;
+									maxday = max(maxday, cons[k].free + pr.di);
+									ex.contrs[j] = (cons[k].name);
+									m[k] = {pr.lev[j].first, pr.lev[j].second};
+									v.insert(k);
+									okrole[j] = 1;
+									isb = 1;
+									break;
 								}
 							}
 						}
@@ -203,7 +203,7 @@ void go1() {
 					for(int j = 0; j < pr.ri;j++) {
 						if(okrole[j]) continue;
 						fo(k,c){
-							if(v.count(k) == 0 and cons[k].lev[pr.lev[j].first] == pr.lev[j].second - 1) {
+							if(v.count(k) == 0 and cons[k].lev[pr.lev[j].first] == pr.lev[j].second - 1 and cons[k].free + floor(((ld)pr.di)*1.5) < pr.bi + pr.si) {
 								bool isb = 0;
 								for(auto &u: v) {
 									if(cons[u].lev[pr.lev[j].first] >= pr.lev[j].second) {
@@ -248,9 +248,9 @@ int main() {
   // freopen("c_collaboration.in.txt", "r", stdin);
   // freopen("hellb.txt", "w", stdout);
   // freopen("d_dense_schedule.in.txt", "r", stdin);
-  freopen("e_exceptional_skills.in.txt", "r", stdin);
-	freopen("helle.txt", "w", stdout);
-  // freopen("f_find_great_mentors.in.txt", "r", stdin);
+  // freopen("e_exceptional_skills.in.txt", "r", stdin);
+  freopen("f_find_great_mentors.in.txt", "r", stdin);
+	freopen("hellf.txt", "w", stdout);
 
   // cout << fixed << setprecision(25);
   int t = 1;
