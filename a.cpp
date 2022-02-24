@@ -145,6 +145,7 @@ void go1() {
     struct proj &pr = projs[i];
     int maxday = 0;
     set<int> v;
+    map<int, string> m;
     struct executed ex;
     ex.name = pr.name;
     for(int j = 0; j < pr.ri;j++) {
@@ -153,13 +154,17 @@ void go1() {
           maxday = max(maxday, cons[k].free + pr.di);
           // cons[k].free 
           ex.contrs.pb(cons[k].name);
+          m[k] = pr.lev[j].first;
           v.insert(k);
           break;
         }
       }
     }
-    if(v.size() < pr.ri) continue;
+    if(v.size() < pr.ri) {
+      continue;
+    }
     for(auto &u: v) {
+      cons[u].lev[m[u]]++;
       cons[u].free = maxday;
     }
     done.pb(ex);
