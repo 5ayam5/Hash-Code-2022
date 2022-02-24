@@ -145,26 +145,53 @@ void go1() {
     struct proj &pr = projs[i];
     int maxday = 0;
     set<int> v;
-    map<int, string> m;
+    map<int, pair<string, int> > m;
     struct executed ex;
     ex.name = pr.name;
+    ex.contrs.assign(pr.ri, "");
+    vector<int> okrole(pr.ri, 0);
     for(int j = 0; j < pr.ri;j++) {
       fo(k,c){
         if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0)  {
           maxday = max(maxday, cons[k].free + pr.di);
-          // cons[k].free 
-          ex.contrs.pb(cons[k].name);
-          m[k] = pr.lev[j].first;
+          ex.contrs[j] = (cons[k].name);
+          m[k] = {pr.lev[j].first, pr.lev[j].second};
           v.insert(k);
+          okrole[j] = 1;
           break;
         }
       }
     }
+    // cout << pr.name<<ln;
+    // for(auto &u:v) {
+    //   cout << cons[u].name << " ";
+    // }
+    // cout << ln;
     if(v.size() < pr.ri) {
-      continue;
+      for(int j = 0; j < pr.ri;j++) {
+        if(okrole[j]) continue;
+        fo(k,c){
+          if(v.count(k) == 0 and cons[k].lev[pr.lev[j].first] >= pr.lev[j].second - 1) {
+            bool isb = 0;
+            for(auto &u: v) {
+              if(cons[u].lev[pr.lev[j].first] >= pr.lev[j].second) {
+                maxday = max(maxday, cons[k].free + pr.di);
+                ex.contrs[j] = (cons[k].name);
+                m[k] = {pr.lev[j].first, pr.lev[j].second};
+                v.insert(k);
+                okrole[j] = 1;
+                isb = 1;
+                break;
+              }
+            }
+            if(isb) break;
+          }
+        }
+      }
+      if(v.size() < pr.ri) continue;
     }
     for(auto &u: v) {
-      cons[u].lev[m[u]]++;
+      if(cons[u].lev[m[u].first] <= m[u].second) cons[u].lev[m[u].first]++;
       cons[u].free = maxday;
     }
     done.pb(ex);
@@ -182,6 +209,7 @@ int main() {
 
   Nos;
   freopen("a_an_example.in.txt", "r", stdin);
+  // freopen("a.txt", "w", stdout);
   // freopen("b_better_start_small.in.txt", "r", stdin);
   // freopen("c_collaboration.in.txt", "r", stdin);
   // freopen("d_dense_schedule.in.txt", "r", stdin);
