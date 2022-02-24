@@ -178,14 +178,14 @@ void go1() {
 							}
 						}
 						if(isb) break;
-						if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0 and cons[k].free + floor(((ld)pr.di)*1.5) < pr.bi + pr.si)  {
+						if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0 and cons[k].free + floor(((ld)pr.di)*1.2) < pr.bi + pr.si)  {
 							if(minskill > cons[k].lev[pr.lev[j].first]) {
 								minskill = cons[k].lev[pr.lev[j].first];
 								minskillind = k;
 							}
 						}
 					}
-					if(minskillind >= 0) {
+					if(okrole[j] == 0 and minskillind >= 0) {
 						int k = minskillind;
 						maxday = max(maxday, cons[k].free + pr.di);
 						ex.contrs[j] = (cons[k].name);
@@ -203,7 +203,7 @@ void go1() {
 					for(int j = 0; j < pr.ri;j++) {
 						if(okrole[j]) continue;
 						fo(k,c){
-							if(v.count(k) == 0 and cons[k].lev[pr.lev[j].first] == pr.lev[j].second - 1 and cons[k].free + floor(((ld)pr.di)*1.5) < pr.bi + pr.si) {
+							if(v.count(k) == 0 and cons[k].lev[pr.lev[j].first] == pr.lev[j].second - 1 and cons[k].free + floor(((ld)pr.di)*1.2) < pr.bi + pr.si) {
 								bool isb = 0;
 								for(auto &u: v) {
 									if(cons[u].lev[pr.lev[j].first] >= pr.lev[j].second) {
@@ -249,8 +249,8 @@ int main() {
   // freopen("hellb.txt", "w", stdout);
   // freopen("d_dense_schedule.in.txt", "r", stdin);
   // freopen("e_exceptional_skills.in.txt", "r", stdin);
-  freopen("f_find_great_mentors.in.txt", "r", stdin);
-	freopen("hellf.txt", "w", stdout);
+  // freopen("f_find_great_mentors.in.txt", "r", stdin);
+	// freopen("hellf.txt", "w", stdout);
 
   // cout << fixed << setprecision(25);
   int t = 1;

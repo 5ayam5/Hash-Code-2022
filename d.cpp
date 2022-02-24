@@ -162,7 +162,7 @@ void go1() {
 					int minskill = 1e9;
 					int minskillind = -1;
 					fo(k,c){
-						if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0 and cons[k].free + floor(((ld)pr.di)*1.5) < pr.bi + pr.si)  {
+						if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0 and cons[k].free)  {
 							if(minskill > cons[k].lev[pr.lev[j].first]) {
 								minskill = cons[k].lev[pr.lev[j].first];
 								minskillind = k;
