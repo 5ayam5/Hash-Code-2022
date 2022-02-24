@@ -85,9 +85,9 @@ struct proj {
   string name;
   ll di, si, ri, bi;
   vector<pair<string, int>> lev;
-	bool operator <(const proj &p1) {
-		return si * p1.di * bi > p1.si * di * p1.bi;
-	}
+	// bool operator <(const proj &p1) {
+	// 	return si * p1.di * bi > p1.si * di * p1.bi;
+	// }
 };
 struct executed {
   string name;
