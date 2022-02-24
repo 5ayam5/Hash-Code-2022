@@ -165,7 +165,7 @@ void go1() {
     done.pb(ex);
   }
 
-  cout << done.size();
+  cout << done.size() << ln;
   fo(i, done.size()) {
     cout << done[i].name << '\n';
     fo(j, done[i].contrs.size()) cout << done[i].contrs[j] << ' ';
