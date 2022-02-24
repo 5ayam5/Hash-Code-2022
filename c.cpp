@@ -98,7 +98,6 @@ struct proj projs[N];
 vector<executed> done;
 
 bool compproj(struct proj &p1, struct proj &p2) {
-  // return p1.si * p2.di * p2.bi > p2.si * p1.di * p1.bi;
   return p2.di > p1.di;
 }
 
@@ -159,7 +158,7 @@ void go1() {
 			int minskill = 1e9;
 			int minskillind = -1;
       fo(k,c){
-        if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0 and cons[k].free + pr.di < pr.bi + pr.si)  {
+        if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0)  {
 					if(minskill > cons[k].lev[pr.lev[j].first]) {
 						minskill = cons[k].lev[pr.lev[j].first];
 						minskillind = k;
