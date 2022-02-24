@@ -79,42 +79,45 @@ struct proj {
     int di, si, ri, bi;
     map<string, int> lev;
 };
-struct con c[N];
+struct con cons[N];
+struct proj projs[N];
 void go1() {
     cin >> c >> p;
     fo(i,c) {
         string name;
         cin >> name;
         int n;cin >> n;
-        struct con c;
-        c.name = name;
-        c.skl = n;
-        c.lev = {};
+        struct con co;
+        co.name = name;
+        co.skl = n;
+        co.lev = {};
         fo(j,n) {
             string skill;
             int skilllevel;
             cin >> skill >> skilllevel;
-            c.lev[skill] = skilllevel;
+            co.lev[skill] = skilllevel;
         }
+        cons[i] = co;
     }
     fo(i,p) {
         string projname;
         int di,si,bi,ri;
         cin >> projname;
         cin >> di >> si >> bi >> ri;
-        struct proj p;
-        p.name = projname;
-        p.di=di;
-        p.ri=ri;
-        p.si=si;
-        p.bi=bi;
-        p.lev = {};
+        struct proj po;
+        po.name = projname;
+        po.di=di;
+        po.ri=ri;
+        po.si=si;
+        po.bi=bi;
+        po.lev = {};
         fo(j, ri) {
             string skill;
             int skillreq;
             cin >> skill >> skillreq;
-            p.lev[skill] = skillreq;
+            po.lev[skill] = skillreq;
         }
+        projs[i] = po;
     }
 }
 
