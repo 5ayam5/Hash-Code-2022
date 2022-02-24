@@ -142,9 +142,7 @@ void go1() {
     projs[i] = po;
   }
 
-  // sort(projs, projs + p, compproj);
-
-
+  sort(projs, projs + p, compproj);
 
   fo(i, p) {
     struct proj &pr = projs[i];
@@ -156,18 +154,12 @@ void go1() {
     ex.contrs.assign(pr.ri, "");
     vector<int> okrole(pr.ri, 0);
 
-		set<struct proj> prs;
-		while(!prs.empty()) {
-
-		}
-
-
     for(int j = 0; j < pr.ri;j++) {
 			int minskill = 1e9;
 			int minskillind = -1;
       fo(k,c){
         if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0)  {
-					if(minskill < cons[k].lev[pr.lev[j].first]) {
+					if(minskill > cons[k].lev[pr.lev[j].first]) {
 						minskill = cons[k].lev[pr.lev[j].first];
 						minskillind = k;
 					}
