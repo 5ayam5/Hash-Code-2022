@@ -98,8 +98,8 @@ struct proj projs[N];
 vector<executed> done;
 
 bool compproj(struct proj &p1, struct proj &p2) {
-  return p1.si > p2.si;
-	// return p1.si * p2.di * p2.bi > p2.si * p1.di * p1.bi;
+  // return p1.si > p2.si;
+	return p1.si * p2.di * p2.bi > p2.si * p1.di * p1.bi;
   // return p2.di > p1.di;
 }
 
@@ -146,7 +146,7 @@ void go1() {
 
   sort(projs, projs + p, compproj);
 	vector<bool> vis(p, 0);
-	fo(its,50) {
+	fo(its,1) {
 		fo(i, p) {
 			if(!vis[i]) {
 				struct proj &pr = projs[i];
@@ -228,9 +228,9 @@ int main() {
 
   Nos;
   // freopen("a_an_example.in.txt", "r", stdin);
-  freopen("b_better_start_small.in.txt", "r", stdin);
+  // freopen("b_better_start_small.in.txt", "r", stdin);
   // freopen("c_collaboration.in.txt", "r", stdin);
-  freopen("hellb.txt", "w", stdout);
+  // freopen("hellb.txt", "w", stdout);
   // freopen("d_dense_schedule.in.txt", "r", stdin);
   // freopen("e_exceptional_skills.in.txt", "r", stdin);
   // freopen("e_exceptional_skills.in.txt", "r", stdin);
