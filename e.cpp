@@ -162,17 +162,22 @@ void go1() {
 					int minskill = 1e9;
 					int minskillind = -1;
 					fo(k,c) {
+						bool isb = 0;
 						if(cons[k].lev[pr.lev[j].first] == pr.lev[j].second - 1 and v.count(k)==0 and cons[k].free + floor(((ld)pr.di)*1.2) < pr.bi + pr.si)  {
 							for(auto &u: v) {
-								if(cons[u].lev[pr.lev[j].first] >= pr.le)
-							}
-							if(minskill > cons[k].lev[pr.lev[j].first]) {
-								minskill = cons[k].lev[pr.lev[j].first];
-								minskillind = k;
+								if(cons[u].lev[pr.lev[j].first] >= pr.lev[j].second) {
+									// mentor for k
+										maxday = max(maxday, cons[k].free + pr.di);
+										ex.contrs[j] = (cons[k].name);
+										m[k] = {pr.lev[j].first, pr.lev[j].second};
+										v.insert(k);
+										okrole[j] = 1;
+										isb = 1;
+										break;
+								}
 							}
 						}
-					}
-					fo(k,c){
+						if(isb) break;
 						if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0 and cons[k].free + floor(((ld)pr.di)*1.5) < pr.bi + pr.si)  {
 							if(minskill > cons[k].lev[pr.lev[j].first]) {
 								minskill = cons[k].lev[pr.lev[j].first];
@@ -243,8 +248,8 @@ int main() {
   // freopen("c_collaboration.in.txt", "r", stdin);
   // freopen("hellb.txt", "w", stdout);
   // freopen("d_dense_schedule.in.txt", "r", stdin);
-  // freopen("e_exceptional_skills.in.txt", "r", stdin);
-  // freopen("e_exceptional_skills.in.txt", "r", stdin);
+  freopen("e_exceptional_skills.in.txt", "r", stdin);
+	freopen("helle.txt", "w", stdout);
   // freopen("f_find_great_mentors.in.txt", "r", stdin);
 
   // cout << fixed << setprecision(25);
