@@ -146,7 +146,7 @@ void go1() {
 
   sort(projs, projs + p, compproj);
 	vector<bool> vis(p, 0);
-	fo(its,3) {
+	fo(its,1) {
 		fo(i, p) {
 			if(!vis[i]) {
 				struct proj &pr = projs[i];
@@ -161,6 +161,17 @@ void go1() {
 				for(int j = 0; j < pr.ri;j++) {
 					int minskill = 1e9;
 					int minskillind = -1;
+					fo(k,c) {
+						if(cons[k].lev[pr.lev[j].first] == pr.lev[j].second - 1 and v.count(k)==0 and cons[k].free + floor(((ld)pr.di)*1.2) < pr.bi + pr.si)  {
+							for(auto &u: v) {
+								if(cons[u].lev[pr.lev[j].first] >= pr.le)
+							}
+							if(minskill > cons[k].lev[pr.lev[j].first]) {
+								minskill = cons[k].lev[pr.lev[j].first];
+								minskillind = k;
+							}
+						}
+					}
 					fo(k,c){
 						if(cons[k].lev[pr.lev[j].first] >= pr.lev[j].second and v.count(k)==0 and cons[k].free + floor(((ld)pr.di)*1.5) < pr.bi + pr.si)  {
 							if(minskill > cons[k].lev[pr.lev[j].first]) {
